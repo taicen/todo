@@ -1,0 +1,310 @@
+@import '../vars';
+// BUTTON
+// ---------------------------------------------------------------------------
+$border-radius: 50rem;
+$font-size-ui: $font-size-small;
+$controls-height: ((34/(strip-unit($font-size-ui)*16)) * 1em); // 40px in ems
+// default
+$button-default-font-size: $font-size-ui !default;
+$button-default-font-weight: 700 !default;
+$button-default-text-transform: uppercase !default;
+$button-default-text-decoration: none !default;
+$button-default-height: $controls-height !default;
+$button-default-padding: .5em 1.6em !default;
+$button-default-background: linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%)!default;
+$button-default-color-text: rgba(#fff, 1) !default;
+$button-default-border-width: 2px !default;
+$button-default-border-style: solid !default;
+$button-default-border-color: transparent !default;
+$button-default-border-radius: $border-radius !default;
+$button-default-box-shadow: none !default;
+
+// secondary
+$button-secondary-font-size: $font-size-ui !default;
+$button-secondary-font-weight: 700 !default;
+$button-secondary-text-transform: none !default;
+$button-secondary-text-decoration: none !default;
+$button-secondary-height: $controls-height !default;
+$button-secondary-padding: .5em 1.6em !default;
+$button-secondary-background: none !default;
+$button-secondary-color-text: #BC9CFF !default;
+$button-secondary-border-width: 2px !default;
+$button-secondary-border-style: solid !default;
+$button-secondary-border-color: transparent !default;
+$button-secondary-border-radius: $border-radius !default;
+$button-secondary-box-shadow: none !default;
+
+// tertiary
+$button-tertiary-font-size: $font-size-ui !default;
+$button-tertiary-font-weight: 700 !default;
+$button-tertiary-text-transform: none !default;
+$button-tertiary-text-decoration: none !default;
+$button-tertiary-height: $controls-height !default;
+$button-tertiary-padding: .5em 0 !default;
+$button-tertiary-background: none !default;
+$button-tertiary-color-text: #BC9CFF !default;
+$button-tertiary-border-width: 0 !default;
+$button-tertiary-border-style: solid !default;
+$button-tertiary-border-color: transparent !default;
+$button-tertiary-border-radius: $border-radius !default;
+$button-tertiary-box-shadow: none !default;
+
+// small
+$button-small-font-size: $font-size-small !default;
+$button-small-height: $controls-height-small !default;
+$button-small-padding: .45em 1.15em !default;
+
+// big
+$button-big-font-size: $font-size-big !default;
+$button-big-height: $controls-height-big !default;
+$button-big-padding: .45em 1.45em !default;
+
+.b-button-wrap {
+    @include make-container;
+    @include flex-items-middle;
+}
+.b-button {
+    &,
+    &:active,
+    &:focus {
+        -webkit-appearance: none;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    	vertical-align: middle;
+        text-align: center;
+        position: relative;
+
+    	font-family: inherit;
+    	font-size: $button-default-font-size;
+    	font-weight: $button-default-font-weight;
+
+        text-decoration: $button-default-text-decoration;
+    	text-transform: $button-default-text-transform;
+
+    	color: $button-default-color-text;
+    	background: transparent;
+    	border-radius: $button-default-border-radius;
+        border: none;
+        // border: 2px solid transparent;
+        // background: linear-gradient(#fff, #fff) padding-box, linear-gradient(#00C9A7, #845EC2) border-box;
+
+    	min-height: $button-default-height;
+        padding: $button-default-padding;
+        box-shadow: $button-default-box-shadow;
+    	cursor: pointer;
+    	line-height: 1.2;
+    }
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: $button-default-border-radius;
+        background: $button-default-background;
+    }
+	& i,
+	& span {
+    	position: relative;
+    	top: 1px;
+    	display: inline-block;
+    	font-size: $font-size-ui;
+
+    	&.caret {
+            width: 24px;
+        	top: 0;
+        	font-size: 110%;
+        	margin-right: -12px;
+    	}
+	}
+    &:hover {
+        @include transition;
+        outline: none;
+    	text-decoration: none;
+    	color: $button-default-color-text;
+        // background-color: lighten($button-default-background, 10%);
+        &:before {
+            @include transition;
+            opacity: .5;
+        }
+    }
+    // Disabled
+    &:disabled,
+    &.is-disabled {
+    	cursor: default;
+    	font-style: normal;
+        color: #fff;
+    	// background-color: rgba($color-black, .5);
+        // opacity: .55;
+        &:before{
+            background-color: rgba($color-black, .5);
+            opacity: .55;
+        }
+    }
+    // Secondary
+    &.is-secondary {
+
+    	color: $button-secondary-color-text;
+    	background: transparent;
+    	// border-radius: $button-secondary-border-radius;
+    	border: none;
+
+    	min-height: $button-secondary-height;
+        padding: $button-secondary-padding;
+        box-shadow: $button-secondary-box-shadow;
+
+        &:before {
+            border: 2px solid transparent;
+            background: linear-gradient(#fff, #fff) padding-box, linear-gradient(180deg, #BC9CFF 0%, #8BA4F9 100%) border-box;
+        }
+
+        &:hover {
+            // color: rgba(#fff, .95);
+            // background: $button-secondary-border-color;
+            // border-color: $button-secondary-border-color;
+        }
+        &.is-loading:after {
+            width: 24px - $button-secondary-border-width;
+        	height: 24px - $button-secondary-border-width;
+        	border-color: rgba($button-secondary-border-color, .25);
+    	    border-bottom-color: $button-secondary-border-color;
+	    }
+	    &.is-loading:hover:after {
+    	    border-color: rgba(#fff, .25);
+    	    border-bottom-color: #fff;
+	    }
+        &:disabled,
+        &.is-disabled {
+            color: rgba($color-black, .5);
+            border-color: rgba($color-black, .3);
+            background: none;
+            &:hover {
+                background-color: none;
+            }
+        }
+    }
+    // Tertiary
+    &.is-tertiary {
+
+    	font-size: $button-tertiary-font-size;
+    	font-weight: $button-tertiary-font-weight;
+
+    	color: $button-tertiary-color-text;
+    	background: $button-tertiary-background;
+    	border-radius: $button-tertiary-border-radius;
+    	border: $button-tertiary-border-width $button-tertiary-border-style $button-tertiary-border-color;
+
+    	min-height: $button-tertiary-height;
+        padding: $button-tertiary-padding;
+        box-shadow: $button-tertiary-box-shadow;
+
+        &:before {
+            display: none;
+        }
+
+    	& i,
+    	& span {
+        	top: 0;
+
+            &.caret {
+        	    top: -1px;
+        	    margin-left: -4px;
+            }
+        }
+        &:hover {
+            color: rgba(31, 32, 65, 0.5);
+            // text-decoration: underline;
+        }
+        &.is-loading:after {
+        	border-color: rgba($button-tertiary-color-text, 0.25);
+    	    border-bottom-color: $button-tertiary-color-text;
+	    }
+        &:disabled,
+        &.is-disabled {
+            text-decoration: none;
+            color: rgba($color-black, .5);
+        }
+    }
+    // Inverted
+    &.is-inverted {
+        color: $color-black;
+        background-color: $color-inverted;
+        &:hover {
+            opacity: .7;
+        }
+        &:disabled,
+        &.is-disabled {
+            &:hover {
+                opacity: .55;
+            }
+        }
+        &.is-secondary {
+            background: none;
+            color: $color-inverted;
+            border-color: $color-inverted;
+            &:hover {
+                opacity: 1;
+                background-color: $color-inverted;
+                color: rgba($color-black, .95);
+                border-color: $color-inverted;
+            }
+            &:disabled,
+            &.is-disabled {
+                &:hover {
+                    opacity: .55;
+                    background: none;
+                    color: #fff;
+                }
+            }
+        }
+        &.is-tertiary {
+            background: none;
+            color: $color-inverted;
+            &:hover {
+                opacity: .6;
+            }
+            &:disabled,
+            &.is-disabled {
+                &:hover {
+                    opacity: .55;
+                }
+            }
+	    }
+    }
+    // Small
+    &.is-small {
+        font-size: $button-small-font-size;
+        min-height: $button-small-height;
+        padding: $button-small-padding;
+        &.is-tertiary {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    &.is-big {
+        font-size: $button-big-font-size;
+        min-height: $button-big-height;
+        padding: $button-big-padding;
+        &.is-tertiary {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    &.is-loading,
+	&.is-icon {
+    	padding-left: 1em;
+    	padding-right: 1em;
+        &.is-tertiary {
+            padding-left: 0;
+            padding-right: 0;
+        }
+	}
+    // Loading
+    &:empty.is-loading:after {
+        margin-right: 0;
+    }
+}

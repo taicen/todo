@@ -1,0 +1,41 @@
+@import '../../styles/vars';
+@import '../../styles/mixins';
+
+.b-footer {
+  @include make-container;
+  @include flex-items-top;
+  > div {
+    margin-left: $grid-gap;
+  }
+
+  .b-brand {
+    width: calc(30% - #{$grid-gap});
+    margin-left: 0;
+  }
+  .b-links {
+    list-style: none;
+    margin: 0;
+
+    a {
+      color: rgba(31, 32, 65, 0.5);
+      text-decoration: none;
+      &:hover {
+        color: rgba(31, 32, 65, 0.75);
+      }
+    }
+  }
+
+  .b-unit-wrap {
+    @include make-container;
+    .b-unit {
+      // width: 20%;
+      min-width: calc(25% - #{$grid-gap});
+    }
+  }
+}
+
+.b-footer-bottom {
+  @include make-container;
+  @include flex-items-middle;
+  @include flex-items-space-between;
+}

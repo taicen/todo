@@ -1,0 +1,14 @@
+.page {
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  margin-top: .5rem;
+  padding: 10px;
+  flex-wrap: wrap;
+  .is-row {
+    width: 100%;
+    margin-left: 0;
+  }
+  .is-col:first-child {
+    margin-left: 0;
+  }
+}
