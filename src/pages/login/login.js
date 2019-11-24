@@ -7,28 +7,23 @@ import * as api from '../../utils/api';
 class LoginPage extends Component {
   state = {
     error: {},
-    // token: null
   }
 
   getAuth = (e) => {
     e.preventDefault();
     let nowDate = new Date();
-    // let cancelDate = new Date(nowDate.getTime() + (60 * 1000));
     let cancelDate = new Date(nowDate.getTime() + (24 * 3600 * 1000));
-    // console.log(cancelDate)
 
     let formData = new FormData(document.forms.formAuth);
     api.authApp( formData ).then((res)=>{
       if(res.status==='error'){
         this.setState({error: res.message})
       } else {
-        // this.setState({token: res.message.token});
         alert('Вы успешно авторизованы!');
         localStorage.setItem('token', res.message.token);
         localStorage.setItem('timetoken', cancelDate);
         localStorage.setItem('role', formData.get('username') === 'admin' ? 'admin' : 'user');
         this.props.history.push('/');
-      // localStorage.setItem('username', value);
       }
     });
   }

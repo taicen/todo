@@ -4,7 +4,6 @@ const BASE_URL = 'https://uxcandy.com/~shapoval/test-task-backend/v2';
 const API_KEY = '?developer=';
 
 const encodeObjectToURI = (object) => {
-  // encodeURIComponent - метод, кодирующий компонент универсального идентификатора ресурса (URI) заменой каждой определенной последовательности символов одной, двумя, тремя или четырьмя последовательностями символов, представленных в кодировке UTF-8
   let query = '&' +
       Object.keys(object)
           .map(key => {
@@ -22,7 +21,6 @@ export const axiosApi = axios.create({
 export const getResource = async (url, developer='admin', params) => {
   try {
     const response = await axiosApi.get( `${url}${API_KEY}${developer}` + encodeObjectToURI(params || {}) );
-    // console.log('API', response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -30,7 +28,6 @@ export const getResource = async (url, developer='admin', params) => {
 }
 
 export const postResource = async (url, developer='admin', params) => {
-  console.log('POST', params);
   try {
     const response = await axiosApi({ 
       method: 'post',
@@ -38,7 +35,6 @@ export const postResource = async (url, developer='admin', params) => {
       data: params || {}, 
       headers: { 'Content-Type': 'multipart/form-data' }
     });
-    console.log('API POST', response.data);
     return response.data;
   } catch (error) {
     console.error(error);

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-/** UI */
-// import Button from 'antd/es/button';
-/** Components */
+
 import ErrorIndicator from '../../components/error-indicator';
 
 import LoginPage from '../../pages/login';
@@ -11,7 +9,6 @@ import SplashPage from '../../pages/splash';
 import { Router, Route, Switch } from 'react-router-dom'
 
 import { createBrowserHistory } from 'history'
-/** Stylizer */
 import './app.scss';
 
 const history = createBrowserHistory();
@@ -21,14 +18,9 @@ class App extends Component {
     hasError: false
   }
 
-  /** отлавливает ошибки в дочерних компонентах, внутри себя нет */
   componentDidCatch(){
     this.setState({hasError: true});
   }
-
-  componentDidMount() {}
-
-  componentDidUpdate(){}
 
   render() {
     const { hasError } = this.state;
@@ -46,10 +38,8 @@ class App extends Component {
             <Route component={ NotFoundPage }  />
           </Switch>
         </Router>
-      
     )
   };
 }
-
 
 export default App;

@@ -6,7 +6,6 @@ import {ReactComponent as Logo} from '../../assets/icons/logo.svg'
 import './header.scss';
 
 const Header = ({links, ...props}) => {
-  // console.log(props);
   const renderTreeMenu = (data) => {
     return(
       <ul className="b-navbar">
@@ -28,7 +27,6 @@ const Header = ({links, ...props}) => {
 
   const logout = (e) => {
     e.preventDefault();
-    console.log(props);
     localStorage.setItem('token', '');
     localStorage.setItem('role', 'user');
     localStorage.setItem('timetoken', null);

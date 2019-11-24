@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-// import {Link} from 'react-router-dom'
 import AnimLayout from '../../common/anim-layout'
 import Layout from '../../common/layout'
 import ReactPaginate from 'react-paginate';
@@ -109,7 +108,6 @@ class SplashPage extends Component {
         form.append("token", localStorage.getItem('token'));
         form.append("text", evt.target.value);
     api.editTask( id, form ).then((res)=>{
-      console.log(res);
       if(res.status === 'error'){
         alert('У вас нет доступа!')
       } else {
@@ -128,7 +126,6 @@ class SplashPage extends Component {
         form.append("token", localStorage.getItem('token'));
         form.append("status", evt.target.checked ? 10 : 0);
     api.editTask( id, form ).then((res)=>{
-      console.log(res);
       if(res.status === 'error'){
         alert('У вас нет доступа!')
       } else {
@@ -152,7 +149,6 @@ class SplashPage extends Component {
     let paramSort = this.querySplit(this.props.location.search) || {};
     let selected = data.selected + 1 ;
     
-    console.log('handle', data.selected);
     this.props.history.push(this.props.location.search + '#page' + selected);
 
     this.initialPage(selected, paramSort);
