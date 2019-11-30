@@ -3,8 +3,8 @@ import axios from 'axios';
 const BASE_URL = 'https://uxcandy.com/~shapoval/test-task-backend/v2';
 const API_KEY = '?developer=';
 
-const encodeObjectToURI = (object) => {
-  let query = '&' +
+export const encodeObjectToURI = (object, sign='?') => {
+  let query = sign +
       Object.keys(object)
           .map(key => {
               return encodeURIComponent(key) + '=' + object[key];
@@ -20,7 +20,7 @@ export const axiosApi = axios.create({
 
 export const getResource = async (url, developer='admin', params) => {
   try {
-    const response = await axiosApi.get( `${url}${API_KEY}${developer}` + encodeObjectToURI(params || {}) );
+    const response = await axiosApi.get( `${url}${API_KEY}${developer}` + encodeObjectToURI(params || {}, '&') );
     return response.data;
   } catch (error) {
     console.error(error);

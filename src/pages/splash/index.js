@@ -57,21 +57,11 @@ class SplashPage extends Component {
     }
   }
 
-  encodeObjectToURI = (object) => {
-    let query = '?' +
-        Object.keys(object)
-            .map(key => {
-              return encodeURIComponent(key) + '=' + object[key];
-            })
-            .join('&');
-    return query;
-  }
-
   sortByField = (e) => {
     let fields = this.querySplit(this.props.location.search);
     let page = this.props.location.hash ? +this.props.location.hash.match(/[0-9]+/).pop() : 0;
     fields.sort_field = e;
-    this.props.history.push(this.encodeObjectToURI(fields) + this.props.location.hash);
+    this.props.history.push(api.encodeObjectToURI(fields) + this.props.location.hash);
     this.initialPage(page, fields);
   }
 
@@ -79,7 +69,7 @@ class SplashPage extends Component {
     let fields = this.querySplit(this.props.location.search);
     let page = this.props.location.hash ? +this.props.location.hash.match(/[0-9]+/).pop() : 0;
     fields.sort_direction = e;
-    this.props.history.push(this.encodeObjectToURI(fields) + this.props.location.hash);
+    this.props.history.push(api.encodeObjectToURI(fields) + this.props.location.hash);
     this.initialPage(page, fields);
   }
 
